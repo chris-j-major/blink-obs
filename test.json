@@ -1,0 +1,7 @@
+{
+  "obs": {
+    "obsWsUrl": "ws://localhost:4444",
+    "obsWsPassword": "quelea",
+    "debug": true
+  }
+}
