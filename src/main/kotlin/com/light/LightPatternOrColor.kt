@@ -21,7 +21,7 @@ object LightPatternOrColorHelper{
         val parts = line.split(":")
         val colorString = parts.getOrElse(0,"ff00ff")
         val delay = parts.getOrElse(1 , "100").toInt()
-        val led = parts.getOrElse(2 , "1").toInt()
+        val led = parts.getOrElse(2 , "0").toInt()
         val color = Color.decode(colorString)
         return PatternLine(  delay , color.red , color.green , color.blue , led )
     }

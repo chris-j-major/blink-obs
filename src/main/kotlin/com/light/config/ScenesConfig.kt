@@ -9,17 +9,17 @@ import org.slf4j.Logger
 @Serializable
 data class ScenesConfig(
     val known:List<SceneMatch> = listOf(
-        SceneMatch(".*[sS]ong.*","#f00ff00"),
-        SceneMatch(".*[cC]amera.*","#f0000")
+        SceneMatch(".*[sS]ong.*","#00ff00"),
+        SceneMatch(".*[cC]amera.*","#ff0000")
     ),
-    val noConnection:String = "#ff0000:50,#000000:100",
-    val notStreamingNotRecording:String = "#ff0000:100,#000000:100",
-    val notStreaming:String = "#ff0000:100,#0000ff:100",
-    val notRecording:String = "#ff0000:100,#00ff00:100",
+    val noConnection:String = "#ff0000:150,#000000:50",
+    val notStreamingNotRecording:String = "#ff0000:50,#000000:150",
+    val notStreaming:String = "#ff0000:300,#0000ff:300",
+    val notRecording:String = "#ff0000:300,#00ff00:300",
     val unknownScene:String = "#000000",
     val noScene:String = "#000000",
-    val shouldBeRecording:Boolean = false,
-    val shouldBeStreaming:Boolean = false,
+    val shouldBeRecording:Boolean = true,
+    val shouldBeStreaming:Boolean = true,
 ) {
     @kotlinx.serialization.Transient
     private val log: Logger = org.slf4j.LoggerFactory.getLogger(this.javaClass)

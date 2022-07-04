@@ -11,9 +11,8 @@ class StatusManager(private val scenes: ScenesConfig, c: OBSLink, l: Lights) {
     init {
         c.registerCallback { control: OBSLink ->
             val nextColor = scenes.chooseColor(control)
-
             if (nextColor != currentColour) {
-                log.info("Switching to $nextColor")
+                log.warn("Switching to $nextColor")
                 l.setTo(nextColor)
                 currentColour = nextColor
             }

@@ -1,9 +1,10 @@
 package com.light
 
+import com.light.config.LightsConfig
 import com.thingm.blink1.Blink1
 import com.thingm.blink1.Blink1Finder
-import com.light.config.LightsConfig
 import org.slf4j.Logger
+
 
 class Lights(config: LightsConfig) {
     private val log: Logger = org.slf4j.LoggerFactory.getLogger(this.javaClass)
@@ -13,19 +14,23 @@ class Lights(config: LightsConfig) {
     }else{
         Blink1Finder.openBySerial(config.id)
     }
-
     init {
-        val found = Blink1Finder.listAll()
-        log.info("enumerating lights: ${found.joinToString(", ")}")
+        if ( device == null ){
+            log.error("No blink(1) device found...")
+            val found = Blink1Finder.listAll()
+            log.info("enumerating lights: ${found.joinToString(", ")}")
+        }else{
+            log.info("firmware: ${device.firmwareVersion} hardware: ${device.version} serial: ${device.serialNumber}")
+        }
     }
 
     fun setTo(target: LightPatternOrColor) {
         if ( target is LightPattern ){
-            log.debug("Setting pattern to $target")
+            log.warn("Setting pattern to $target")
             device?.playPattern( target.patternLines )
 
         }else if ( target is LightColor){
-            log.debug("Setting color to $target")
+            log.warn("Setting color to $target")
             device?.fadeToRGB(100, target.color )
         }
     }
