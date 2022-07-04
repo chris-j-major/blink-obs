@@ -308,7 +308,6 @@ public abstract class Blink1
     int rc=0; 
     for( int i = 0; i< linecount; i++ ) {
       PatternLine p = patternlines[i];
-      System.out.printf("writePattern:%d ",i,p);
       rc = this.writePatternLine(p,i);
       if(rc<0) { return rc; }
     }

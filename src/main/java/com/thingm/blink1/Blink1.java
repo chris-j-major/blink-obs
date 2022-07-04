@@ -20,6 +20,8 @@ public abstract class Blink1
   public static final byte report2Id = 2;
   public static final byte report2Len = 60;
 
+  int currentled = -1; //ensure we send the ledn with the next pattern update
+
   /**
    * Our serial number 
    */
@@ -265,14 +267,23 @@ public abstract class Blink1
    * @param pos entry position 0-patt_max
    * @returns blink1_command response code, -1 == fail 
    */
-  public int writePatternLine(int fadeMillis, int r, int g, int b, int pos) {
+  public int writePatternLine(int fadeMillis, int r, int g, int b, int ledn, int pos) {
+    this.checkLed(ledn);
     int dms = fadeMillis/10;
     byte th = (byte)(dms >> 8);
     byte tl = (byte)(dms & 0x00ff);
     byte[] buf = {(byte)'P', (byte)r, (byte)g, (byte)b, th,tl, (byte)pos, 0};
     return this.sendFeatureReport(buf, reportId);
   }
-  
+
+  private void checkLed(int ledn) {
+    if (currentled != ledn){
+      currentled = ledn;
+      byte[] buf =  {(byte)'l', (byte)ledn, (byte)0 };
+      int res = this.sendFeatureReport(buf, reportId);
+    }
+  }
+
   /**
    * Write a blink(1) light pattern entry.
    *
@@ -282,14 +293,14 @@ public abstract class Blink1
    * @returns < 0 if error
    */
   public int writePatternLine(int fadeMillis, Color c, int pos) {
-    return writePatternLine(fadeMillis, c.getRed(), c.getGreen(), c.getBlue(), pos);
+    return writePatternLine(fadeMillis, c.getRed(), c.getGreen(), c.getBlue(), 0, pos);
   }
 
   /**
    *
    */
   public int writePatternLine(PatternLine p, int pos) {
-    return writePatternLine( p.fadeMillis, p.r, p.g, p.b, pos);
+    return writePatternLine( p.fadeMillis, p.r, p.g, p.b, p.ledn, pos);
   }
 
   /**
@@ -308,7 +319,6 @@ public abstract class Blink1
     int rc=0; 
     for( int i = 0; i< linecount; i++ ) {
       PatternLine p = patternlines[i];
-      System.out.printf("writePattern:%d ",i,p);
       rc = this.writePatternLine(p,i);
       if(rc<0) { return rc; }
     }
@@ -371,7 +381,7 @@ public abstract class Blink1
   public int playPattern(PatternLine[] patternlines, boolean clear) {
     int rc = this.writePattern(patternlines, clear);
     if(rc<0) return rc;
-    return this.play();
+    return this.play(0,patternlines.length,Integer.MAX_VALUE);
   }
   
   /**
