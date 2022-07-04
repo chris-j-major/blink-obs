@@ -27,6 +27,7 @@ fun main(args: Array<String>){
     val l = Lights( config.light )
 
     StatusManager( config.scenes , c , l )
+    c.triggerCallback()
 
     while(true) {
         if ( !c.connected) {

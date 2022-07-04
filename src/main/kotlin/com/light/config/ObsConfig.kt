@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ObsConfig(
     val obsWsUrl:String = "ws://localhost:4444",
-    val obsWsPassword:String = "quelea",
+    val obsWsPassword:String = "",
     val debug: Boolean = false
 )

@@ -50,7 +50,7 @@ class OBSLink(config: ObsConfig ) {
         callbackList.add(function)
     }
 
-    private fun triggerCallback(){
+    fun triggerCallback(){
         callbackList.forEach { f -> f( this ) }
     }
 
