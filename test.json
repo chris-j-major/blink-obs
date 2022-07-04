@@ -3,5 +3,19 @@
     "obsWsUrl": "ws://localhost:4444",
     "obsWsPassword": "quelea",
     "debug": true
+  },
+  "scenes": {
+    "known": [
+      {
+        "regex": "Song",
+        "lights": "#ff0000:50,#000000:150"
+      },
+      {
+        "regex": "Camera",
+        "lights": "#ffffff"
+      }
+    ],
+    "shouldBeRecording": false,
+    "shouldBeStreaming": false
   }
 }

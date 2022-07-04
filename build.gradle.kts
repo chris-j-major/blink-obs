@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.5.10"
     kotlin("plugin.serialization") version "1.4.10"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "org.example"
@@ -8,6 +9,12 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+val jar by tasks.getting(Jar::class) {
+    manifest {
+        attributes["Main-Class"] = "com.light.MainKt"
+    }
 }
 
 dependencies {
