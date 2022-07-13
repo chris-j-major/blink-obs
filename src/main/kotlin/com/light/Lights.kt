@@ -6,7 +6,7 @@ import com.thingm.blink1.Blink1Finder
 import org.slf4j.Logger
 
 
-class Lights(config: LightsConfig) {
+class Lights(config: LightsConfig): StateReceiver {
     private val log: Logger = org.slf4j.LoggerFactory.getLogger(this.javaClass)
 
     private val device: Blink1? = if(config.connectAny){
@@ -24,7 +24,7 @@ class Lights(config: LightsConfig) {
         }
     }
 
-    fun setTo(target: LightPatternOrColor) {
+    override fun setTo(target: LightPatternOrColor) {
         if ( target is LightPattern ){
             log.warn("Setting pattern to $target")
             device?.playPattern( target.patternLines )

@@ -25,8 +25,9 @@ fun main(args: Array<String>){
 
     val c = OBSLink( config.obs )
     val l = Lights( config.light )
+    val t = TrayIcon()
 
-    StatusManager( config.scenes , c , l )
+    StatusManager( config.scenes , c , listOf(l,t) )
     c.triggerCallback()
 
     while(true) {

@@ -13,6 +13,9 @@ extension
 3. Run the program (optionally specifying configuration via a json file
 referenced on the command line)
 
+When in use a "SystemTray" icon will be shown indicating the current state
+of the light. This will fucntion even if no `blink(1)` is avalaible.
+
 ## Build from Source
 This project uses gradle to build and run.
 
@@ -93,3 +96,5 @@ has at least a color, and then following sections separated by `:` specifying
 the duration (in ms, defaults to 100ms), and which LED to use (only available
 on some devices, default to 'all'). For example `#ff0000:50,#000000:150` will
 flash red for 50ms, and then black for 150ms - making a brief flash.
+
+## 

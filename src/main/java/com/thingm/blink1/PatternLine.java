@@ -4,6 +4,10 @@
 
 package com.thingm.blink1;
 
+import org.jetbrains.annotations.Nullable;
+
+import java.awt.*;
+
 public class PatternLine {
   public int fadeMillis;
   public int r,g,b;
