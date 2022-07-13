@@ -1,5 +1,5 @@
-/**
- *
+/*
+ * from: https://github.com/todbot/blink1-java under Creative Commons - Attribution - ShareAlike 3.0
  */
 
 package com.thingm.blink1;

@@ -1,9 +1,10 @@
-/**
+/*
  * ThingM blink(1) Java library
  *
  * Copyright 2008-2020, Tod E. Kurt / @todbot
  *
- * 
+ * from: https://github.com/todbot/blink1-java under Creative Commons - Attribution - ShareAlike 3.0
+ *
  */
 
 package com.thingm.blink1;

@@ -1,7 +1,6 @@
 package com.light
 
 import com.light.config.ObsConfig
-import javafx.application.Application.launch
 import net.twasi.obsremotejava.OBSRemoteController
 import net.twasi.obsremotejava.events.responses.ScenesChangedResponse
 import net.twasi.obsremotejava.events.responses.TransitionBeginResponse

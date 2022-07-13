@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.5.10"
     kotlin("plugin.serialization") version "1.4.10"
+    application
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
@@ -9,6 +10,10 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass.set("com.light.MainKt")
 }
 
 val jar by tasks.getting(Jar::class) {
